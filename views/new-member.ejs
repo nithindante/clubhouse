@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Member</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+<body>
+    <div class="door">
+        <nav class="navbar" aria-label="Main">
+            <a class="navbar-brand" href="/">Club house</a>
+            <div class="navbar-links">
+                <a class="navbar-link" href="/dashboard">Dashboard</a>
+                <a class="navbar-link" href="/my-message">My message</a>
+                <a class="navbar-link" href="/create-message">Create a message</a>
+                <a class="navbar-link" href="/new-member" aria-current="page">Become a member</a>
+                <a class="navbar-link" href="/admin">Admin</a>
+                <form method="POST" action="/logout">
+                    <button class="btn btn-secondary">Log out</button>
+                </form>
+            </div>
+        </nav>
+        <header class="placard">
+            <h1>Club house</h1>
+        </header>
+        <main class="signup">
+            <form class="signup-card" method="POST" action="/new-member">
+                <h2>Become a member</h2>
+                <p class="signup-intro">Enter the secret code to unlock the full club.</p>
+
+                <% if (errors && errors.length) { %>
+                    <div class="error-card" role="alert">
+                        <ul>
+                            <% errors.forEach(error => { %>
+                                <li><%= error %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                <% } %>
+
+                <div class="field">
+                    <label for="secret_code">Secret code</label>
+                    <input type="password" id="secret_code" name="secret_code" autocomplete="off" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Join the club</button>
+
+                <p class="signup-alt"><a href="/dashboard">Back to dashboard</a></p>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

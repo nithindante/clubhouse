@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up - ClubHouse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="/js/script.js"></script>
+</head>
+
+<body>
+    <div class="door">
+        <header class="placard">
+            <h1>Club house</h1>
+        </header>
+        <main class="signup">
+            <form class="signup-card" method="POST" action="/sign-up">
+                <h2>Join the club</h2>
+                <p class="signup-intro">Pick a username. It's the only name other members will see.</p>
+
+                <% if (errors && errors.length) { %>
+                    <div class="error-card" role="alert">
+                        <ul>
+                            <% errors.forEach(function(error) { %>
+                                <li>
+                                    <% if (error.path) { %><strong><%= error.path %>:</strong> <% } %>
+                                    <%= error.msg %>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                <% } %>
+
+                <div class="field">
+                    <label for="full_name">Full name</label>
+                    <input type="text" id="full_name" name="full_name" autocomplete="name" required>
+                </div>
+
+                <div class="field">
+                    <label for="user_name">Username</label>
+                    <input type="text" id="user_name" name="user_name" autocomplete="username" required>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="new-password" minlength="8"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="confirm_password">Confirm password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" autocomplete="new-password"
+                        minlength="8" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Create account</button>
+
+                <p class="signup-alt">Already a member? <a href="/login">Log in</a></p>
+            </form>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login successful - ClubHouse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body>
+    <div class="door">
+        <header class="placard">
+            <h1>Club house</h1>
+        </header>
+        <main class="signup">
+            <section class="signup-card success-card">
+                <div class="success-badge" aria-hidden="true">&#10003;</div>
+                <h2>Welcome in</h2>
+                <p class="signup-intro">You're logged in. The doors are open.</p>
+
+                <div class="success-actions">
+                    <a href="/" class="btn btn-primary">Enter the club</a>
+                    <form method="POST" action="/logout">
+                        <button class="btn btn-secondary">Log out</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubHouse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+    <div class="door">
+        <header class="placard">
+            <h1>Club house</h1>
+        </header>
+        <main class="mainDiv">
+            <p class="notice">This is members-only message club where you log in anonymously to share your thoughts and connect with others. Post messages without revealing your identity and see what others have to say — all in a safe and welcoming space.</p>
+            <div class="actions">
+                <a class="btn btn-primary" href="/sign-up">Sign up</a>
+                <a class="btn btn-secondary" href="/login">Log in</a>
+            </div>
+            <section class="messages" aria-labelledby="messages-heading">
+                <h2 class="messages-title" id="messages-heading">Latest messages</h2>
+                <% if (locals.messages && messages.length) { %>
+                    <% messages.forEach(message => { %>
+                        <article class="message-card">
+                            <% if (message.title) { %>
+                                <h3 class="message-title"><%= "********* "%></h3>
+                            <% } %>
+                            <p class="message-text"><%= message.text %></p>
+                            <% if (message.time_stamp) { %>
+                                <time class="message-time" datetime="<%= new Date(message.time_stamp).toISOString() %>"><%= '******************' %></time>
+                            <% } %>
+                        </article>
+                    <% }) %>
+                <% } else { %>
+                    <p class="signup-intro">No messages yet. Be the first to post.</p>
+                <% } %>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

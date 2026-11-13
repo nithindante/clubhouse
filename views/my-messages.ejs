@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Messages - ClubHouse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body>
+    <div class="door">
+        <nav class="navbar" aria-label="Main">
+            <a class="navbar-brand" href="/">Club house</a>
+            <div class="navbar-links">
+                <a class="navbar-link" href="/dashboard">Dashboard</a>
+                <a class="navbar-link" href="/my-message" aria-current="page">My message</a>
+                <a class="navbar-link" href="/create-message">Create a message</a>
+                <a class="navbar-link" href="/new-member">Become a member</a>
+                <a class="navbar-link" href="/admin">Admin</a>
+                <form method="POST" action="/logout">
+                    <button class="btn btn-secondary">Log out</button>
+                </form>
+            </div>
+        </nav>
+        <header class="placard">
+            <h1>Club house</h1>
+        </header>
+        <main class="mainDiv">
+            <section class="messages" aria-labelledby="messages-heading">
+                <h2 class="messages-title" id="messages-heading">My messages</h2>
+                <% if (locals.messages && messages.length) { %>
+                    <% messages.forEach(message => { %>
+                        <article class="message-card">
+                            <% if (message.title) { %>
+                                <h3 class="message-title"><%= message.title %></h3>
+                            <% } %>
+                            <p class="message-text"><%= message.text %></p>
+                            <% if (message.time_stamp) { %>
+                                <time class="message-time" datetime="<%= new Date(message.time_stamp).toISOString() %>"><%= new Date(message.time_stamp).toLocaleString() %></time>
+                            <% } %>
+                        </article>
+                    <% }) %>
+                <% } else { %>
+                    <p class="signup-intro">You haven't posted any messages yet.</p>
+                <% } %>
+            </section>
+            <div class="actions">
+                <a class="btn btn-primary" href="/create-message">Create a message</a>
+                <a class="btn btn-secondary" href="/dashboard">Back to dashboard</a>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
