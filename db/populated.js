@@ -39,7 +39,7 @@ id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 `
 async function main() {
   const client = new Client({
-    connectionString: `postgresql://${sqlConnection.DB_CONFIG.user}:${sqlConnection.DB_CONFIG.password}@${sqlConnection.DB_CONFIG.host}:${sqlConnection.DB_CONFIG.port}/${sqlConnection.DB_CONFIG.database}`,
+    connectionString: process.env.DATABASE_URL,
   });
   app.use(session({
   store: new pgSession({
