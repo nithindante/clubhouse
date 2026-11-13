@@ -1,14 +1,9 @@
 const { Client } = require("pg");
 const dotenv = require('dotenv')
-const session = require('express-session');
-const express = require("express");
-const app = express();
-const pgSession = require("connect-pg-simple")(session);
 dotenv.config({
   path: './env/.env',
   debug: true
 })
-const sqlConnection = require('../env/dev.env');
 const SQL = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -40,18 +35,8 @@ id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 async function main() {
   const client = new Client({
     connectionString: process.env.DATABASE_URL,
+    ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : undefined,
   });
-  app.use(session({
-  store: new pgSession({
-    pool: client, // Use the PostgreSQL client for session storage
-    tableName: "sessions", // Table name for storing sessions
-    createTableIfMissing: true
-  }),
-  secret: "your-secret-key", // Replace with your own secret key
-  resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // Session expiration (30 days)
-}));
   await client.connect();
   await client.query(SQL); 
   await client.end();
